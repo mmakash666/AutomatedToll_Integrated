@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    
+    <style>
+       
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #1a202c;
+            color: #e2e8f0;
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .form-container {
+            max-width: 400px;
+            width: 100%;
+            padding: 40px;
+            background-color: #2d3748;
+            border-radius: 20px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+        }
+        .form-container h2 {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        .form-container label {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            display: block;
+        }
+        .form-container input[type="text"],
+        .form-container input[type="email"],
+        .form-container input[type="password"] {
+            width: 100%;
+            padding: 15px;
+            border-radius: 8px;
+            border: 1px solid #4a5568;
+            margin-bottom: 20px;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+            background-color: #2d3748;
+            color: #cbd5e0;
+        }
+        .form-container input[type="text"]:focus,
+        .form-container input[type="email"]:focus,
+        .form-container input[type="password"]:focus {
+            border-color: #4caf50;
+        }
+        .form-container button[type="submit"],
+        .form-container button[type="reset"] {
+            width: 48%;
+            padding: 15px;
+            font-size: 16px;
+            font-weight: 600;
+            text-transform: uppercase;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .form-container button[type="submit"] {
+            background-color: #4caf50;
+            color: #fff;
+        }
+        .form-container button[type="submit"]:hover {
+            background-color: #45a049;
+        }
+        .form-container button[type="reset"] {
+            background-color: #f44336;
+            color: #fff;
+        }
+        .form-container button[type="reset"]:hover {
+            background-color: #d32f2f;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="form-container">
+            <h2>Sign Up</h2>
+            <form action="signup_process_input_data_onDB.php" method="post">
+                <div class="mb-4">
+                    <label for="nid">NID:</label>
+                    <input type="text" id="nid" name="nid" placeholder="Enter your NID" required>
+                </div>
+                <div class="mb-4">
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" placeholder="Enter your username" name="username" required>
+                </div>
+                <div class="mb-4">
+                    <label for="card_details">Card Details:</label>
+                    <input type="text" id="card_details" placeholder="Enter your card details" name="card_details" required>
+                </div>
+                <div class="mb-4">
+                    <label for="bank_details">Bank Details:</label>
+                    <input type="text" id="bank_details" placeholder="Enter your bank details" name="bank_details" required>
+                </div>
+                <div class="mb-4">
+                    <label for="amount">Recharge Wallet:</label>
+                    <input type="text" id="amount" name="amount" placeholder="Enter the amount" required>
+                </div>
+                <div class="mb-4">
+                    <label for="license_plate">License Plate:</label>
+                    <input type="text" id="license_plate" placeholder="Enter your license plate" name="license_plate" required>
+                </div>
+                <div class="mb-4">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="mb-4">
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <div class="flex justify-between">
+                    <button type="submit" name="submit">Submit</button>
+                    <button type="reset" name="reset">Reset</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

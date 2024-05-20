@@ -1,0 +1,255 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toll Collection</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1a202c; /* Dark mode background color */
+            margin: 0;
+            padding: 0;
+            color: #cbd5e0; /* Dark mode text color */
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: row;
+            height: 100vh;
+        }
+        .card {
+            width: 400px;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-color: #2d3748; /* Dark mode card background color */
+            margin-bottom: 20px;
+        }
+        .card-header {
+            background-color: #4a5568; /* Dark mode card header background color */
+            color: #e2e8f0; /* Dark mode card header text color */
+            border-radius: 10px 10px 0 0;
+            text-align: center;
+            padding: 15px 0;
+            margin-bottom: 20px;
+        }
+        .card-body {
+            margin-bottom: 20px;
+        }
+        .form-control {
+            border-radius: 20px;
+            background-color: #cbd5e0; /* Dark mode input background color */
+            color: #2d3748; /* Dark mode input text color */
+        }
+        .btn-primary {
+            border-radius: 20px;
+        }
+        .btn-signup,
+        .btn-signin {
+            display: block;
+            padding: 10px 20px;
+            margin: 5px;
+            border-radius: 20px;
+            text-decoration: none;
+            text-align: center;
+            cursor: pointer;
+        }
+        .btn-signup {
+            background-color: #48bb78; /* Dark mode sign up button background color */
+            color: #e2e8f0; /* Dark mode sign up button text color */
+            border: none;
+        }
+        .btn-signin {
+            background-color: #f56565; /* Dark mode sign in button background color */
+            color: #e2e8f0; /* Dark mode sign in button text color */
+            border: none;
+        }
+        .btn-signup:hover {
+            background-color: #38a169; /* Dark mode sign up button hover background color */
+        }
+        .btn-signin:hover {
+            background-color: #e53e3e; /* Dark mode sign in button hover background color */
+        }
+        .left-container {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            background-image: url('your-blurred-background-image.jpg');
+            background-size: cover;
+            backdrop-filter: blur(10px);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        }
+    </style>
+</head>
+<body>
+<!--This is to integrate with firebase to retrieve the data-->
+
+    <script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+    import { getDatabase, ref, get } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
+    
+    // Your web app's Firebase configuration
+    const firebaseConfig = {
+      apiKey: "",
+      authDomain: "",
+      databaseURL: "",
+      projectId: "",
+      storageBucket: "",
+      messagingSenderId: "",
+      appId: "",
+      measurementId: ""
+    };
+  
+    // Initialize Firebase app
+    const app = initializeApp(firebaseConfig);
+    const database = getDatabase(app);
+    
+    // Reference to the license plate number in the database
+    const dataRef = ref(database, 'license_plates/lp_0/plate_number');
+
+    // Retrieve data from Firebase
+    get(dataRef).then((snapshot) => {
+        if (snapshot.exists()) {
+            const data = snapshot.val();
+            // Update input field with the fetched data
+            document.getElementById('license_plate').value = data;
+        } else {
+            console.log("No data available");
+        }
+    }).catch((error) => {
+        console.error("Error getting data:", error);
+    });
+
+
+
+
+
+
+
+
+    // const analytics = getAnalytics(app);
+  
+
+    //     // Reference to the Realtime Database
+    //     const database = firebase.database();
+
+    //      // Function to retrieve data from Firebase and display it in the text input
+    //      function getLicensePlate() {
+    //         const licensePlateInput = document.getElementById('license_plate');
+    //         const ref = database.ref('license_plates');
+
+    //         ref.once('value', (snapshot) => {
+    //             const data = snapshot.val();
+    //             if (data) {
+    //                 // Assuming i want the latest entry
+    //                 const keys = Object.keys(data);
+    //                 const latestKey = keys[keys.length - 1];
+    //                 const latestPlate = data[latestKey].plate_number;
+    //                 licensePlateInput.value = latestPlate;
+    //             }
+    //         });
+    //     }
+
+    //     // Call the function to get the license plate
+    //     window.onload = getLicensePlate;
+        
+    </script>
+
+
+
+
+
+
+
+    <div class="container mx-auto">
+        <div class="left-container">
+            <a href="signup.html" class="btn-signup">Sign Up</a>
+            <a href="signin.html" class="btn-signin">Sign In</a>
+        </div>
+        <div class="max-w-md w-full bg-white rounded-lg shadow-lg p-8">
+            <h2 class="text-3xl font-semibold text-gray-800 mb-6">Confirm Payment</h2>
+            <form action="retrieve_info.php" method="post">
+                <div class="mb-4">
+                    <label for="license_plate" class="block text-gray-700">License Plate Number:</label>
+                    <input type="text" id="license_plate" name="license_plate" required class="mt-1 p-2 block w-full rounded-lg border border-gray-300 focus:outline-none focus:border-blue-500 focus:ring focus:ring-blue-200 form-control">
+                </div>
+                <div class="flex justify-between">
+                    <button type="submit" name="sub" class="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600">Confirm</button>
+                    <button type="reset" name="btn_reset" class="bg-red-500 text-white py-2 px-4 rounded-lg hover:bg-red-600">Delete</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+</body>
+</html>
+
+
+<!----
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Toll Collection</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="styles.css">
+    
+
+    
+</head>
+<body class="bg-gray-100">
+    <div class="container mx-auto">
+        <div class="max-w-md w-full bg-white rounded-lg shadow-lg p-8">
+            <h2 class="text-3xl font-semibold text-gray-800 mb-6">Confirm Payment</h2>
+            <form action="retrieve_info.php" method="post">
+                <div class="mb-4">
+                    <label for="license_plate" class="block text-gray-700">License Plate Number:</label>
+                    <input type="text" id="license_plate" name="license_plate" required class="mt-1 p-2 block w-full rounded-lg border border-gray-300 focus:outline-none focus:border-blue-500 focus:ring focus:ring-blue-200">
+                </div>
+                <div class="flex justify-between">
+                    <button type="submit" name="sub" class="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600">Confirm</button>
+                    <button type="reset" name="btn_reset" class="bg-red-500 text-white py-2 px-4 rounded-lg hover:bg-red-600">Delete</button>
+                    
+                </div>
+            </form>
+            
+        </div>
+        
+    </div>
+
+   
+    <div class="container mx-auto" >
+        <div>
+            
+            <a href="signup.html" class="bg-blue-700 text-white py-4 px-4 rounded-lg hover:bg-green-600">Sign Up</a>
+            <a href="signin.html" class="bg-red-100 text-black py-2 px-4 rounded-lg
+            hover:bg-blue-500">Sign in</a>
+        </div>
+    </div>
+
+
+
+    
+
+</body>
+</html>
+
+
+-->

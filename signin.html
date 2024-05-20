@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign In</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #1a202c; 
+            margin: 0;
+            padding: 0;
+            color: #cbd5e0; 
+        }
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-image: url('');
+            background-size: cover;
+        }
+        .card {
+            width: 400px;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-color: #2d3748; 
+        }
+        .card-header {
+            background-color: #4a5568; 
+            color: #e2e8f0; 
+            border-radius: 10px 10px 0 0;
+            text-align: center;
+            padding: 15px 0;
+            margin-bottom: 20px;
+        }
+        .card-body {
+            margin-bottom: 20px;
+        }
+        .form-control {
+            border-radius: 20px;
+            background-color: #cbd5e0; 
+            color: #2d3748; 
+        }
+        .btn-primary {
+            border-radius: 20px;
+            background-color: #48bb78; 
+            color: #e2e8f0; 
+            border: none;
+        }
+        .btn-primary:hover {
+            background-color: #38a169; 
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <div class="card-header">
+                <h2>Sign In</h2>
+            </div>
+            <div class="card-body">
+                <form action="signin_process_insert_DB.php" method="post">
+                    <div class="form-group">
+                        <label for="plateNumber">Plate Number:</label>
+                        <input type="text" class="form-control" id="lpnumber" name="lpnumber" placeholder="Enter Plate number">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password:</label>
+                        <input type="password" class="form-control" id="password" name = "password"placeholder="Enter password">
+                    </div>
+                    <button type="submit"  name="sign_sub" id="sign_sub" class="btn btn-primary btn-block">Sign In</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
